@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoHealth City - 환경과 건강 게임</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Pretendard", sans-serif;
+      background: #f0fff4;
+      text-align: center;
+    }
+
+    header {
+      background: #2f855a;
+      color: white;
+      padding: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      width: 90%;
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background: #38a169;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #2f855a;
+    }
+
+    footer {
+      padding: 20px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .impact-box {
+      margin-top: 15px;
+      padding: 15px;
+      background: #e6fffa;
+      border-radius: 15px;
+      font-size: 0.95rem;
+      color: #22543d;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>🌿 EcoHealth City</header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>환경을 지켜 도시의 건강을 회복하라!</h2>
+      <p>깨끗한 공기는 최고의 약입니다.<br>당신의 선택이 도시와 시민을 지킵니다.</p>
+    </div>
+
+    <div class="card">
+      <h3>🩺 현재 도시 상태</h3>
+      <p id="status">미세먼지: 😷 심함<br>시민 건강지수: ❤️ 50%</p>
+      <button onclick="cleanCity()">🌱 환경 정화하기</button>
+      <p id="result" style="margin-top: 10px; font-weight: 600;"></p>
+
+      <div id="impact" class="impact-box" style="display:none;">
+      </div>
+    </div>
+
+  </div>
+
+  <footer>© 2025 EcoHealth Project</footer>
+
+  <script>
+    let health = 50;
+    let step = 0;
+
+    const impacts = [
+      "🌫 미세먼지가 줄어들면 기관지염·천식 위험이 감소합니다.",
+      "💧 깨끗한 물은 피부 질환과 식중독을 예방하는 데 중요합니다.",
+      "🌿 녹지가 늘어나면 스트레스 호르몬이 감소하고 면역력이 향상됩니다.",
+      "🌍 환경이 건강해지면 시민들의 전반적인 삶의 질이 높아집니다.",
+      "❤️ 건강한 환경은 약보다 강력한 예방 의학입니다."
+    ];
+
+    function cleanCity() {
+      if (health < 100) {
+        health += 10;
+        step++;
+
+        document.getElementById("status").innerHTML =
+          `미세먼지: 😊 감소 중<br>시민 건강지수: ❤️ ${health}%`;
+
+        document.getElementById("result").innerText =
+          "도시가 점점 깨끗해지고 있어요! 🌱";
+
+        // 환경 → 건강 영향 출력
+        document.getElementById("impact").style.display = "block";
+        document.getElementById("impact").innerText = impacts[step - 1];
+      } 
+      else {
+        document.getElementById("result").innerText =
+          "🎉 완벽하게 회복된 도시를 만들었습니다!";
+        
+        document.getElementById("impact").style.display = "block";
+        document.getElementById("impact").innerText =
+          "💚 깨끗한 환경은 결국 인간의 생명과 건강을 지키는 가장 근본적인 힘입니다.";
+      }
+    }
+  </script>
+
+</body>
+</html>
